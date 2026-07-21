@@ -7,15 +7,17 @@ from pathlib import Path
 from model_1.model_1 import ScrewClassifier as ScrewClassifier1
 from model_2.model_2 import ScrewClassifier as ScrewClassifier2
 from model_3.model_3 import ScrewClassifier as ScrewClassifier3
+from model_4.model_4 import get_model as get_model4
 
 BASE_DIR = Path(__file__).resolve().parent
+
 
 NORMALIZE = transforms.Normalize(
     mean=[0.485, 0.456, 0.406],
     std=[0.229, 0.224, 0.225]
 )
 
-# unnormalized for model 1
+# unnormalized image for model 1
 unnormalized_transform = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor()
@@ -67,12 +69,12 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Running Evaluation on Device: {device}\n")
     
-    # images for model 1
+    # Load unnormalized test dataset for Model 1
     unnorm_test_data = datasets.ImageFolder(BASE_DIR / 'dataset' / 'test', transform=unnormalized_transform)
     unnorm_test_loader = DataLoader(unnorm_test_data, batch_size=32, shuffle=False)
     classes = unnorm_test_data.classes
     
-    # images for models 2 & 3
+    # Load normalized test dataset for Models 2, 3 & 4
     norm_test_data = datasets.ImageFolder(BASE_DIR / 'dataset' / 'test', transform=normalized_transform)
     norm_test_loader = DataLoader(norm_test_data, batch_size=32, shuffle=False)
     
@@ -80,6 +82,7 @@ def main():
         "Model 1": (ScrewClassifier1(num_classes=5), BASE_DIR / "model_1" / "screw_classifier_1.pth", unnorm_test_loader),
         "Model 2": (ScrewClassifier2(num_classes=5), BASE_DIR / "model_2" / "screw_classifier_2.pth", norm_test_loader),
         "Model 3": (ScrewClassifier3(num_classes=5), BASE_DIR / "model_3" / "screw_classifier_3.pth", norm_test_loader),
+        "Model 4": (get_model4(num_classes=5, freeze_features=False), BASE_DIR / "model_4" / "screw_classifier_4.pth", norm_test_loader),
     }
     
     results = {}
