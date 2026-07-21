@@ -1,0 +1,24 @@
+# Virtual Environment
+cv_env/
+venv/
+.venv/
+env/
+
+# Dataset
+archive/
+*archive.zip
+dataset/
+
+# Models
+*.pth
+*.pt
+*.onnx
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Misc
+.DS_Store
+Thumbs.db
