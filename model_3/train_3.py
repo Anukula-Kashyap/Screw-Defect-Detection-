@@ -15,8 +15,13 @@ def train_model():
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=0.001)
     
+    #lr scheduler
+    scheduler = optim.lr_scheduler.ReduceLROnPlateau(
+        optimizer, mode='min', factor=0.5, patience=3
+    )
+    
     epochs = 50
-    patience = 12 #higher patience
+    patience = 12
     patience_counter = 0
     best_val_acc = 0.0
     
@@ -56,6 +61,8 @@ def train_model():
                 
         avg_val_loss = running_val_loss / len(val_loader)
         val_accuracy = 100 * correct_predictions / total_samples
+        
+        scheduler.step(avg_val_loss)
         
         saved_status = ""
         if val_accuracy > best_val_acc:

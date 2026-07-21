@@ -5,18 +5,25 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent / "dataset"
 
-train_transform = transforms.Compose([ # random transforms applied to image
+# Standard ImageNet normalization
+NORMALIZE = transforms.Normalize(
+    mean=[0.485, 0.456, 0.406],
+    std=[0.229, 0.224, 0.225]
+)
+
+
+train_transform = transforms.Compose([ #random image transformations to reduce overfit
     transforms.Resize((224, 224)),
     transforms.RandomHorizontalFlip(p=0.5),
-    transforms.RandomVerticalFlip(p=0.5),
-    transforms.RandomRotation(degrees=45),
-    transforms.ColorJitter(brightness=0.2, contrast=0.2),
-    transforms.ToTensor()
+    transforms.RandomRotation(degrees=15),
+    transforms.ToTensor(),
+    NORMALIZE
 ])
 
 transform = transforms.Compose([
     transforms.Resize((224, 224)),
-    transforms.ToTensor()
+    transforms.ToTensor(),
+    NORMALIZE
 ])
 
 train_data = datasets.ImageFolder(BASE_DIR / 'train', transform=train_transform)
