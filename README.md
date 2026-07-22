@@ -5,7 +5,7 @@ This project uses a PyTorch computer vision pipeline to classify various defects
 Identifying defects in products is incredibly important in manufacturing. I implemented a Convolutional Neural Network (CNN) in PyTorch to classify images of screws based on their defects. The project is split into 4 models, which use different techniques to reach higher classification accuracy.
 
 ## Dataset
-This project was created using the [Screw Defect Instance Segmentation Dataset](https://www.kaggle.com/datasets/mahboobxalam/screw-defect-instance-segmentation-dataset?resource=download) from Kaggle. This Dataset contains 737 images at 244x244 pixels sorted into 5 classes:
+This project was created using the [Screw Defect Instance Segmentation Dataset](https://www.kaggle.com/datasets/mahboobxalam/screw-defect-instance-segmentation-dataset?resource=download) from Kaggle. This Dataset contains 737 sorted into 5 classes:
 
 | Class | Sample Image | Description |
 | :--- | :---: | :--- |
