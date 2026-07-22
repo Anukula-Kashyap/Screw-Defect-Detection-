@@ -19,8 +19,10 @@ The dataset is pre-split into training (70%), validation (20%), and testing (10%
 ### Model 1
 Model 1 was my introduction to PyTorch. The model uses two convolutional layers to process the images down to a spatial resolution of 56x56 with 32 channels.
 
-### Model 2
-Model 2 added normalization to images and would transform them in random ways (rotation, flipping). Normalization will make calculating the gradients easier, while transforming the training images randomly would make it so the model could not memorize the training set, reducing overfit.
+### Model 2                                                                                                                                                                           
+Model 2 added image normalization, random image transformations (rotation, flipping), and a learning rate scheduler. Normalization zero-centers pixel values to make calculating         
+gradients easier, while transforming the training images randomly prevents the model from memorizing the dataset, reducing overfit. The learning rate scheduler automatically reduces   
+the step size when validation loss plateaus, helping the model fine-tune weights more precisely.
 
 ### Model 3
 Model 3 included the changes from model 2, but also increased the amount of convolutional layers to four, and added a dropout rate of 0.4. Adding more layers allows the model to extract deeper features and increases accuracy. Dropout turns off a percentage of the neurons(40%) during training. This decreases the dependency that neurons have on each other. By not relying too much on specific neurons, the model will have less overfit.
