@@ -6,11 +6,14 @@ Identifying defects in products is incredibly important in manufacturing. I impl
 
 ## Dataset
 This project was created using the [Screw Defect Instance Segmentation Dataset](https://www.kaggle.com/datasets/mahboobxalam/screw-defect-instance-segmentation-dataset?resource=download) from Kaggle. This Dataset contains 737 images at 244x244 pixels sorted into 5 classes:
-- head_defect: Cracks, deformation, or wear on the screw head.
-- neck_defect: Fractures or thinning at the head-shank interface.
-- screw: Defect-free, baseline healthy screws.
-- thread_defect: Stripped, malformed, or worn helical threads.
-- tip_defect: Broken or blunt screw entry points.
+
+| Class | Sample Image | Description |
+| :--- | :---: | :--- |
+| **head_defect** | <img src="assets/head_defect.jpg" width="150" alt="head_defect"> | Cracks, deformation, or wear on the screw head. |
+| **neck_defect** | <img src="assets/neck_defect.jpg" width="150" alt="neck_defect"> | Fractures or thinning at the head-shank interface. |
+| **screw** | <img src="assets/screw.jpg" width="150" alt="screw"> | Defect-free, baseline healthy screws. |
+| **thread_defect** | <img src="assets/thread_defect.jpg" width="150" alt="thread_defect"> | Stripped, malformed, or worn helical threads. |
+| **tip_defect** | <img src="assets/tip_defect.jpg" width="150" alt="tip_defect"> | Broken or blunt screw entry points. |
 
 The dataset is pre-split into training (70%), validation (20%), and testing (10%) partitions.
 
